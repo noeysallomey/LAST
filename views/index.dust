@@ -1,0 +1,162 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LAST | Edit Category</title>
+</head>
+<body>
+    
+    {<index}
+        <!-- start: Content -->
+        <div>
+			<canvas id="interactiveChart" style="width:800px; height:400px;"></canvas>
+		</div>
+		<br> <br>
+		<div>
+			<canvas id="recentReport" style="width:350px; height:350px;"></canvas>
+		</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+
+
+	<script>
+		$.getJSON('/interactiveChart', function(intReport) {
+			console.log(intReport);
+			
+			var data = {
+		        labels: ["January", "February", "March", "April", "May", "June"],
+		        datasets: [
+			        {
+			            label: intReport[0].status,
+			            backgroundColor: 'rgba(26, 188, 156, 0.7)',
+			            borderColor: 'rgba(26, 188, 156, 0.7)',
+			            data: [
+		            		intReport[0].average, 
+		            		intReport[1].average, 
+		            		intReport[2].average, 
+		            		intReport[3].average, 
+		            		intReport[4].average, 
+		            		intReport[5].average
+			            ]
+			        },
+			        {
+			            label: intReport[6].status,
+			            backgroundColor: 'rgba(142, 68, 173, 0.7)',
+			            borderColor: 'rgba(142, 68, 173, 0.7)',
+			            data: [
+		            		intReport[6].average, 
+		            		intReport[7].average, 
+		            		intReport[8].average, 
+		            		intReport[9].average, 
+		            		intReport[10].average, 
+		            		intReport[11].average
+			            ]
+			        },
+			        {
+			            label: intReport[12].status,
+			            backgroundColor: 'rgba(52, 152, 219, 0.7)',
+			            borderColor: 'rgba(52, 152, 219, 0.7)',
+			            data: [
+		            		intReport[12].average, 
+		            		intReport[13].average, 
+		            		intReport[14].average, 
+		            		intReport[15].average, 
+		            		intReport[16].average, 
+		            		intReport[17].average
+			            ]
+			        },
+			        {
+			            label: intReport[18].status,
+			            backgroundColor: 'rgba(244, 208, 63, 0.7)',
+			            borderColor: 'rgba(244, 208, 63, 0.7)',
+			            data: [
+		            		intReport[18].average, 
+		            		intReport[19].average, 
+		            		intReport[20].average, 
+		            		intReport[21].average, 
+		            		intReport[22].average, 
+		            		intReport[23].average
+			            ]
+			        },
+			        {
+			            label: intReport[24].status,
+			            backgroundColor: 'rgba(231, 76, 60, 0.7)',
+			            borderColor: 'rgba(231, 76, 60, 0.7)',
+			            data: [
+		            		intReport[24].average, 
+		            		intReport[25].average, 
+		            		intReport[26].average, 
+		            		intReport[27].average, 
+		            		intReport[28].average, 
+		            		intReport[29].average
+			            ]
+			        }
+			    ]
+		    };
+
+		    var ctx = document.getElementById("interactiveChart").getContext('2d');
+
+			var options = {
+				scales: {
+			        yAxes: [{
+			            ticks: {
+			                beginAtZero: true
+			            }
+			        }]
+			    },
+			    responsive: false
+			};
+
+			var myChart = new Chart(ctx, {type: 'bar', data, options});
+
+		});
+	</script>
+
+	
+	<script>
+		$.getJSON('/recentReportChart', function(report) {
+			console.log(report);
+			var data = {
+				labels: [
+			        report[0].status, 
+			        report[1].status, 
+			        report[2].status,
+			        report[3].status,
+			        report[4].status
+			    ],
+				datasets: [{
+			        data: [
+				        report[0].percentage,
+				        report[1].percentage,
+				        report[2].percentage,
+				        report[3].percentage,
+				        report[4].percentage
+			        ],
+				    backgroundColor: [
+				    	'rgba(26, 188, 156, 0.7)',
+				    	'rgba(142, 68, 173, 0.7)',
+				    	'rgba(52, 152, 219, 0.7)',
+				    	'rgba(244, 208, 63, 0.7)',
+				    	'rgba(231, 76, 60, 0.7)'
+				    ]
+			    }]	    
+			};
+
+			var options = {
+				responsive: false
+			};
+			var ctx = document.getElementById("recentReport").getContext('2d');
+
+			var pChart = new Chart(ctx, {type: 'polarArea', data, options});
+		});
+		
+	</script>
+        
+    {/index}
+    
+
+</body>
+</html>

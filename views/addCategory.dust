@@ -1,0 +1,37 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LAST | Add Category</title>
+</head>
+<body>
+	
+	{<addCategory}
+		<!-- start: Content -->
+		<div class="card-content">
+            <h3><span class="card-title">Add Category</span><br><br></h3>
+            <div class="row">
+                <form class="col s12" action="/confirmAdd" method="POST">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Category" id="category_name" name="category_name" type="text" class="validate" required>
+                            <label for="category_name" class="active">Category Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Add
+						    	<i class="material-icons left">library_add</i>
+						  	</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+	{/addCategory}
+	
+
+</body>
+</html>

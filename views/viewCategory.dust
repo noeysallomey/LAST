@@ -1,0 +1,58 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LAST | View Category</title>
+</head>
+<body>
+	
+	{<viewCategory}
+		<!-- start: Content -->
+		<div class="card-content">
+            <h3><span class="card-title">List of Categories</span><br><br></h3>
+            <div class="row" style="padding-left: 20%">
+                <table class="bordered striped highlight responsive-table mdl-data-table">
+                    <thead>
+                      <tr>
+                          <strong><th>Category</th></strong>
+                          <strong><th class="centered"><center># of niche</th></strong>
+                          <strong><th class="centered"><center># of leads</th></strong>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {#category}
+                        <tr>
+                            <td>{category_name}</td>
+                            <td class="centered"><center>{count}</td>
+                            <td class="centered"><center>{emails}</td>
+                            <input type="hidden" name="holder" value="{category_name}"/>
+                            <form action="/nicheCategorized" method="POST">
+                            <td class="centered"><center><button class="btn waves-effect waves-light" type="submit" name="action">View Niche</td>
+                            <td class="centered"><center><button class="btn waves-effect waves-light" type="submit" name="action">View Leads</td>
+                            </form>
+                        </tr>
+                        {/category}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	{/viewCategory}
+	
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            columnDefs: [
+                {
+                    targets: [ 0, 1, 2 ],
+                    className: 'mdl-data-table__cell--non-numeric'
+                }
+            ]
+        } );
+    });
+  </script>
+
+</body>
+</html>

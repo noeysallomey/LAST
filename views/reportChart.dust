@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LAST | Chaaaaaaaaaaarrrtttsss</title>
+</head>
+<body>
+		<div>
+			<canvas id="chart" style="width:800px; height:400px;"></canvas>
+		</div>
+		<br> <br>
+		<div>
+			<canvas id="recentReport" style="width:350px; height:350px;"></canvas>
+		</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+
+
+	<script>
+		var ctx = document.getElementById("chart").getContext('2d');
+
+		var data = {
+	        labels: ["January", "February", "March", "April", "May", "June"],
+	        datasets: [
+		        {
+		            label: "Clicked",
+		            backgroundColor: 'rgba(26, 188, 156, 0.7)',
+		            borderColor: 'rgba(26, 188, 156, 0.7)',
+		            data: [30, 70, 40, 50, 23, 36]
+		        },
+		        {
+		            label: "Opened",
+		            backgroundColor: 'rgba(142, 68, 173, 0.7)',
+		            borderColor: 'rgba(142, 68, 173, 0.7)',
+		            data: [20, 65, 48, 90, 13, 65]
+		        },
+		        {
+		            label: "Unsubscribed",
+		            backgroundColor: 'rgba(52, 152, 219, 0.7)',
+		            borderColor: 'rgba(52, 152, 219, 0.7)',
+		            data: [42, 76, 23, 78, 63, 22]
+		        },
+		        {
+		            label: "DNO",
+		            backgroundColor: 'rgba(244, 208, 63, 0.7)',
+		            borderColor: 'rgba(244, 208, 63, 0.7)',
+		            data: [56, 34, 23, 28, 98, 72]
+		        },
+		        {
+		            label: "Bounced",
+		            backgroundColor: 'rgba(231, 76, 60, 0.7)',
+		            borderColor: 'rgba(231, 76, 60, 0.7)',
+		            data: [10, 87, 76, 49, 43, 19]
+		        }
+		    ]
+	    };
+
+		var options = {
+			scales: {
+		        yAxes: [{
+		            ticks: {
+		                beginAtZero: true
+		            }
+		        }]
+		    },
+		    responsive: false
+		};
+
+		var myChart = new Chart(ctx, {type: 'bar', data, options});
+	</script>
+
+	
+	<script>
+		$.getJSON('/lastChart', function(report) {
+			console.log(report);
+			var my_report = report;
+			var data = {
+				labels: [
+			        my_report[0].status, 
+			        my_report[1].status, 
+			        my_report[2].status,
+			        my_report[3].status,
+			        my_report[4].status
+			    ],
+				datasets: [{
+			        data: [
+				        my_report[0].percentage,
+				        my_report[1].percentage,
+				        my_report[2].percentage,
+				        my_report[3].percentage,
+				        my_report[4].percentage
+			        ],
+				    backgroundColor: [
+				    	'rgba(26, 188, 156, 0.7)',
+				    	'rgba(142, 68, 173, 0.7)',
+				    	'rgba(52, 152, 219, 0.7)',
+				    	'rgba(244, 208, 63, 0.7)',
+				    	'rgba(231, 76, 60, 0.7)'
+				    ]
+			    }]	    
+			};
+
+			var options = {
+				responsive: false
+			};
+			var ctx = document.getElementById("recentReport").getContext('2d');
+
+			var pChart = new Chart(ctx, {type: 'polarArea', data, options});
+		});
+		
+	</script>
+</body>
+</html>

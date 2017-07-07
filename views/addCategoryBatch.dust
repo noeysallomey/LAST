@@ -1,0 +1,56 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LAST | Add Category</title>
+    <script type="text/javascript">
+        $('#i_file').change( function(event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("img").fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[0]));
+
+            $("#disp_tmp_path").html(tmppath);
+            document.getElementById("holder").value = blob:http://localhost:3000/2b1fb8e9-1f03-4fcb-ad4f-4f0b659ecca0;
+
+        });
+    </script>
+</head>
+<body>
+	
+	{<addCategory}
+		<!-- start: Content -->
+		<div class="card-content">
+            <h3><span class="card-title">Add Category</span><br><br></h3>
+            <div class="row">
+                <form class="col s12" action="/confirmAddBatch" method="POST">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <div class="file-field input-field">
+                              <div class="btn">
+                                <span>File</span>
+                                <input type="file" id="i_file">
+                              </div>
+                              <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" name="file_name">
+                              </div>
+                            </div>
+                            <label for="category_name" class="active">Category Name</label>
+                            <input type="hidden" name="holder" id="holder">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Add
+						    	<i class="material-icons left">library_add</i>
+						  	</button>
+                        </div>
+                    </div>
+                    <div id="disp_tmp_path"></div>                    
+                </form>
+            </div>
+        </div>
+	{/addCategory}
+	
+
+</body>
+</html>

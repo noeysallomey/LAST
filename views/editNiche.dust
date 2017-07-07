@@ -1,0 +1,42 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LAST | Edit Niche</title>
+</head>
+<body>
+    
+    {<editCategory}
+        <!-- start: Content -->
+        <div class="card-content">
+            <h3><span class="card-title">Edit Niche</span><br><br></h3>
+            <div class="row">
+                <form class="col s12" action="/searchNicheForEdit" method="POST">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="niche_name" class="active">Niche Name</label>
+                            <select id="selectError2" name="niche" data-rel="chosen" onchange="changeValueStaffOffice()">
+                                <option value="" disabled selected>Choose niche to edit</option>
+                                  {#niche}
+                                <option value="{niche_id}" id ="{niche_id}">{niche_name}</option>
+                              {/niche}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Select
+                                <i class="material-icons left">done</i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    {/editCategory}
+    
+
+</body>
+</html>
